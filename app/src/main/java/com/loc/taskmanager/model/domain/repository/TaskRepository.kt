@@ -1,6 +1,7 @@
 package com.loc.taskmanager.model.domain.repository
 
 import com.loc.taskmanager.model.data.model.Task
+import com.loc.taskmanager.model.domain.utils.Result
 import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {
