@@ -1,6 +1,8 @@
 package com.loc.taskmanager
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.loc.taskmanager.model.domain.repository.TaskRepository
+import com.loc.taskmanager.model.domain.repository.TaskRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
