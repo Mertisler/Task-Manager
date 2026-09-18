@@ -1,6 +1,9 @@
 package com.loc.taskmanager
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.loc.taskmanager.model.domain.repository.AuthRepository
+import com.loc.taskmanager.model.domain.repository.AuthRepositoryImpl
 import com.loc.taskmanager.model.domain.repository.TaskRepository
 import com.loc.taskmanager.model.domain.repository.TaskRepositoryImpl
 import dagger.Module
@@ -44,5 +47,20 @@ object AppModule {
     @Singleton
     fun provideTaskRepository(firestore: FirebaseFirestore): TaskRepository {
         return TaskRepositoryImpl(firestore)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(
+        firebaseAuth: FirebaseAuth,
+        firestore: FirebaseFirestore
+    ): AuthRepository {
+        return AuthRepositoryImpl(firebaseAuth, firestore)
     }
 }
