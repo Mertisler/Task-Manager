@@ -14,4 +14,7 @@ interface AuthRepository {
 
     // Oturum açık olan mevcut kullanıcının UID'sini getirir (Uygulama açılışında otomatik giriş için).
     fun getCurrentUserId(): String?
+
+    // ... diğer fonksiyonlar (login, register vb.)
+    suspend fun getUserRole(userId: String): Result<String>
 }

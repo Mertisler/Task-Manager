@@ -63,4 +63,16 @@ class AuthRepositoryImpl @Inject constructor(
     override fun getCurrentUserId(): String? {
         return firebaseAuth.currentUser?.uid
     }
+
+    override suspend fun getUserRole(userId: String): Result<String> {
+        return try {
+            // UID'ye sahip belgeyi Firestore'dan getir
+            val document = firestore.collection("users").document(userId).get().await()
+            // Belge içindeki 'role' alanını oku, bulamazsa varsayılan olarak "Employee" ata
+            val role = document.getString("role") ?: "Employee"
+            Result.Success(role)
+        } catch (e: Exception) {
+            Result.Error(e)
+        }
+    }
 }
